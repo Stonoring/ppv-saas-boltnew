@@ -1,0 +1,27 @@
+Lettre informant du versement de la prime de partage de la valeur
+
+Lettre informant du versement de la prime de partage de la valeur
+
+
+{{nom-entreprise}}
+{{adresse-entreprise}}
+
+{{nom}} {{prenom}}
+{{adresse}}
+                                                                         
+Fait à {{lieu}}, le {{date}}
+ 
+Lettre remise en main propre 
+Objet : Versement d’une prime de partage de la valeur
+ 
+Madame / Monsieur {{nom}}, 
+ 
+Nous avons le plaisir de vous informer que la prime exceptionnelle de partage de la valeur d’un montant de {{montant}} euros vous est attribuée.
+Cette prime sera versée sur votre salaire du mois de {{mois-versement}}.
+Nous tenons à vous féliciter et à vous remercier pour le travail accompli et espérons que cette réussite sera suivie de bien d'autres.
+
+Sachez qu’étant donné que votre rémunération des 12 derniers, cette prime sera {{impots}} à l’impôt sur le revenu.
+
+Nous vous prions de recevoir, Madame / Monsieur {{nom}}, l’expression de nos meilleurs sentiments.
+
+{{signataire}}
