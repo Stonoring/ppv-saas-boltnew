@@ -10,26 +10,26 @@ import { useProgressStore } from '@/stores/progress-store'
 
 const steps = [
   {
-    id: 1,
-    name: 'COMPOSER',
+    id: 'COMPOSER',
+    name: 'Composer',
     icon: Pencil,
     route: '/calculator',
   },
   {
-    id: 2,
-    name: 'REDIGER',
+    id: 'REDIGER',
+    name: 'Rédiger',
     icon: FileText,
     route: '/redaction',
   },
   {
-    id: 3,
-    name: 'FINALISER',
+    id: 'FINALISER',
+    name: 'Finaliser',
     icon: Check,
     route: '/validation',
   },
   {
-    id: 4,
-    name: 'VERSER',
+    id: 'VERSER',
+    name: 'Verser',
     icon: CreditCard,
     route: '/employees',
   },
@@ -49,47 +49,54 @@ export default function Timeline() {
             Étape {completedSteps.length + 1} sur {steps.length}
           </span>
         </div>
-        <Progress value={progress} className="h-2" />
+        <Progress value={(progress / steps.length) * 100} className="h-2" />
       </CardHeader>
       <CardContent>
         <div className="space-y-8">
-          {steps.map((step, index) => {
+          {steps.map((step) => {
             const stepProgress = getStepProgress(step.id)
             const isCompleted = completedSteps.includes(step.id)
             const isCurrent = currentStep === step.id
 
             return (
-              <div key={step.id} className="flex items-center gap-4">
+              <div key={step.id} className="flex items-center">
                 <div
                   className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-full border-2",
+                    'relative flex h-12 w-12 items-center justify-center rounded-full border-2',
                     isCompleted
-                      ? "border-primary bg-primary text-primary-foreground"
+                      ? 'border-primary bg-primary text-primary-foreground'
                       : isCurrent
-                      ? "border-primary"
-                      : "border-muted"
+                      ? 'border-primary'
+                      : 'border-muted-foreground'
                   )}
                 >
-                  {isCompleted ? (
-                    <Check className="h-5 w-5" />
-                  ) : (
-                    <step.icon className="h-5 w-5" />
+                  <step.icon className="h-6 w-6" />
+                  {stepProgress > 0 && !isCompleted && (
+                    <Progress
+                      value={stepProgress}
+                      className="absolute -bottom-1 left-1/2 h-1 w-24 -translate-x-1/2"
+                    />
                   )}
                 </div>
-                <div className="flex-1">
+                <div className="ml-4 min-w-0 flex-1">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="font-semibold">{step.name}</div>
-                      {stepProgress > 0 && !isCompleted && (
-                        <Progress value={stepProgress} className="mt-1 h-1" />
-                      )}
+                      <div className="text-sm font-medium">{step.name}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {isCompleted
+                          ? 'Terminé'
+                          : isCurrent
+                          ? 'En cours'
+                          : 'À venir'}
+                      </div>
                     </div>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => router.push(step.route)}
+                      disabled={!isCompleted && !isCurrent}
                     >
-                      {isCompleted ? "Modifier" : "Commencer"}
+                      {isCompleted ? 'Modifier' : isCurrent ? 'Continuer' : 'Commencer'}
                     </Button>
                   </div>
                 </div>

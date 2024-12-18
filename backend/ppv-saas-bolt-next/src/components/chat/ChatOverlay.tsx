@@ -7,7 +7,7 @@ interface ChatOverlayProps {
   onClick: () => void
 }
 
-export function ChatOverlay({ onClick }: ChatOverlayProps) {
+export default function ChatOverlay({ onClick }: ChatOverlayProps) {
   return (
     <div className="fixed bottom-4 right-4">
       <Button
